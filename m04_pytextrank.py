@@ -1,5 +1,4 @@
 from pdf_reader import get_pdf_text
-'''$ python -m spacy download en-core-web-lg'''
 import spacy
 import pytextrank
 
@@ -12,10 +11,6 @@ if __name__ == '__main__':
 
     nlp.add_pipe("textrank")
     doc = nlp(doc_text.replace('\n', ' '))
-
-    # examine the top-ranked phrases in the document
-    # for p in doc._.phrases:
-    #     print("{:.4f} {:5d} {} {}".format(p.rank, p.count, p.text, p.chunks))
 
     for sent in doc._.textrank.summary(limit_phrases=5, limit_sentences=5):
         print(sent)
